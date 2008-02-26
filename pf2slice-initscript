@@ -4,8 +4,6 @@
 # description: planetflow slice initscript
 #
 
-PROC=fprobe-ulog
-
 . /etc/rc.d/init.d/functions
 
 case "$1" in
