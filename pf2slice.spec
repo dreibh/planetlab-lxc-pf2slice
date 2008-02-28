@@ -26,8 +26,8 @@ pf2slice - Populates the planetflow slice with the right initscript, keychains a
 rm -rf %{buildroot}
 install -d -v %{buildroot}/etc/init.d
 install -m 755 -v pf2slice-initscript %{buildroot}/etc/init.d/pf2slice
-mkdir -p /root/.ssh
-cp authorized_keys /root/.ssh
+mkdir -p %{buildroot}/root/.ssh
+cp authorized_keys %{buildroot}/root/.ssh
 
 %clean
 rm -rf %{buildroot}
