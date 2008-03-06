@@ -9,7 +9,7 @@
 case "$1" in
     start)
         echo -n "starting the planetflow slice:"
-	echo "pf" > /vsys/pfmount
+	echo "pf" > /vsys/pfmount.in
         echo
         ;;
 
