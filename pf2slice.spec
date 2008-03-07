@@ -37,6 +37,7 @@ rm -rf %{buildroot}
 %defattr(-,root,root)
 /etc/init.d/pf2slice
 /root/.ssh/authorized_keys
+/home/*
 /pf
 
 %post
