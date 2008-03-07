@@ -38,7 +38,7 @@ rm -rf %{buildroot}
 %files
 %defattr(-,root,root)
 /etc/init.d/pf2slice
-/root/.ssh/authorized_keys
+/home/pl_netflow/.ssh/authorized_keys
 /home/*
 /pf
 
