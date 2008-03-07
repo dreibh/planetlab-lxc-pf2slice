@@ -28,7 +28,7 @@ install -d -v %{buildroot}/etc/init.d
 install -m 755 -v pf2slice-initscript %{buildroot}/etc/init.d/pf2slice
 mkdir -p %{buildroot}/home/pl_netflow/.ssh
 mkdir -p %{buildroot}/pf
-cp authorized_keys %{buildroot}/pl_netflow/.ssh
+cp authorized_keys %{buildroot}/home/pl_netflow/.ssh
 
 %clean
 rm -rf %{buildroot}
