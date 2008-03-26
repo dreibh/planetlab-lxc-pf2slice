@@ -1,7 +1,7 @@
 # please keep these three lines as they are used by the tagging script
 # see build/module-tag.py for details
 %define name pf2slice
-%define version 1
+%define version 1.0
 %define taglevel 1
 
 %define release %{taglevel}%{?pldistro:.%{pldistro}}%{?date:.%{date}}
