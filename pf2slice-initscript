@@ -4,18 +4,51 @@
 # description: planetflow slice initscript
 #
 
-. /etc/rc.d/init.d/functions
+#. /etc/rc.d/init.d/functions
+
+DELTA=10 # Time to sleep between polls
+VSYSSCRIPT="/vsys/pfmount.in"
+VSYSCMD="pf"
+
+watchdog(){
+    while [ 1 ]; do
+        # if the file exists, try writing to it.
+        if [ -a ${VSYSSCRIPT} ]; then
+	        echo "Writing to Fifo"
+	        /bin/echo ${VSYSCMD} > ${VSYSSCRIPT} &
+	        PID=$!
+	        #  Wait for command to complete
+	        sleep $DELTA
+	        # check to see if PID is running
+	        if kill -0 ${PID} >/dev/null 2>&1 ; then
+	            # if PID is running, it's likely hung.  Kill it.
+	            echo "Blocked on Fifo. Killing"
+	            kill ${PID} 
+	        else
+	            # assume if PID is no longer, command completed
+	            echo "Completed. Exitting"
+	            exit 0
+	        fi
+        else
+            # no pipe yet.  vsys probably hasn't started yet.  wait.
+            echo "${VSYSSCRIPT} doesn't exist"
+            sleep $DELTA
+        fi 
+    done
+}
+
 
 case "$1" in
     start)
         echo -n "starting the planetflow slice:"
-	echo "pf" > /vsys/pfmount.in
-        echo
+	    watchdog 2> /dev/null
         ;;
 
     *)
         echo "Usage: $0 {start|stop|restart|status}"
         RETVAL=1
 esac
+
+
 
 exit $RETVAL
