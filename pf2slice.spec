@@ -2,7 +2,7 @@
 # see build/module-tag.py for details
 %define name pf2slice
 %define version 1.0
-%define taglevel 1
+%define taglevel 2
 
 %define release %{taglevel}%{?pldistro:.%{pldistro}}%{?date:.%{date}}
 
@@ -47,3 +47,8 @@ chkconfig --add pf2slice
 chkconfig pf2slice on
 
 %changelog
+* Tue May 20 2008 Faiyaz Ahmed <faiyaza@cs.princeton.edu> - pf2slice-1.0-2
+- 
+- The PlanetFlow slice needs to mount the netflow logs from the root context.  The initscript will now attempt to trigger vsys to mount the logs repeatedly until vsys responds.  
+- 
+
